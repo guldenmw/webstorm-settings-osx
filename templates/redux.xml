@@ -37,4 +37,12 @@
       <option name="JAVA_SCRIPT" value="true" />
     </context>
   </template>
+  <template name="apiact" value="export const $ACTION$_START = '$END$/$KEBAB$_START';&#10;export const $ACTION$_SUCCESS = '$END$/$KEBAB$_SUCCESS';&#10;export const $ACTION$_ERROR = '$END$/$KEBAB$_ERROR';&#10;&#10;&#10;export const $CAMEL$Start = data =&gt; ({&#10;  type: $ACTION$_START, data,&#10;});&#10;&#10;export const $CAMEL$Success = data =&gt; ({&#10;  type: $ACTION$_SUCCESS, data,&#10;});&#10;&#10;export const $CAMEL$Error = data =&gt; ({&#10;  type: $ACTION$_ERROR, data,&#10;});&#10;" description="Redux Start, Success, Error Actions" toReformat="false" toShortenFQNames="true">
+    <variable name="ACTION" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="KEBAB" expression="lowercaseAndDash(ACTION)" defaultValue="" alwaysStopAt="false" />
+    <variable name="CAMEL" expression="camelCase(ACTION)" defaultValue="" alwaysStopAt="false" />
+    <context>
+      <option name="JAVA_SCRIPT" value="true" />
+    </context>
+  </template>
 </templateSet>
