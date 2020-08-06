@@ -155,4 +155,12 @@
       <option name="JAVA_SCRIPT" value="true" />
     </context>
   </template>
+  <template name="wsaga" value="import { call, put, select, takeLatest } from 'redux-saga/effects';&#10;&#10;function* $NAME$(action) {&#10;  try {&#10;    const { data } = action;&#10;    $END$&#10;    return yield put(() =&gt; {});&#10;  } catch (ex) {&#10;    console.error(ex);&#10;    return yield put(() =&gt; {});&#10;  }&#10;}&#10;&#10;export default $NAME$;&#10;" description="Saga Worker" toReformat="false" toShortenFQNames="true">
+    <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="ES6_STATEMENT" value="true" />
+      <option name="JS_STATEMENT" value="true" />
+      <option name="TS_STATEMENT" value="true" />
+    </context>
+  </template>
 </templateSet>
