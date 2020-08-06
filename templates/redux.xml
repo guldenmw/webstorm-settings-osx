@@ -45,7 +45,7 @@
       <option name="JAVA_SCRIPT" value="true" />
     </context>
   </template>
-  <template name="resel" value="import { createSelector } from 'reselect';&#10;&#10;const $FUNC_NAME$ = createSelector([&#10;  $SELECTOR$,&#10;], (&#10;  $SELECTOR_RETURN$&#10;) =&gt; {&#10;  $END$&#10;});&#10;" description="Create Reselect Selector" toReformat="false" toShortenFQNames="true">
+  <template name="resel" value="import { createSelector } from 'reselect';&#10;&#10;const $FUNC_NAME$ = createSelector([&#10;  $SELECTOR$,&#10;], (&#10;  $SELECTOR_RETURN$&#10;) =&gt; {&#10;  $END$&#10;});&#10;&#10;export default $FUNC_NAME$;&#10;" description="Create Reselect Selector" toReformat="false" toShortenFQNames="true">
     <variable name="FUNC_NAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="SELECTOR" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="SELECTOR_RETURN" expression="" defaultValue="" alwaysStopAt="true" />
