@@ -62,4 +62,12 @@
       <option name="TS_STATEMENT" value="true" />
     </context>
   </template>
+  <template name="res" value="const $FUNC_NAME$ = createSelector([$SELECTOR$,], ($SELECTOR_RETURN$) =&gt; {&#10;  $END$&#10;});&#10;" description="Create Reselect Selector" toReformat="false" toShortenFQNames="true">
+    <variable name="FUNC_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="SELECTOR" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="SELECTOR_RETURN" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="TS_STATEMENT" value="true" />
+    </context>
+  </template>
 </templateSet>
