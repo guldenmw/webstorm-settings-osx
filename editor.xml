@@ -26,6 +26,7 @@
     <option name="STRIP_TRAILING_SPACES" value="Whole" />
     <option name="IS_INDENT_GUIDES_SHOWN" value="false" />
     <option name="ADDITIONAL_PAGE_AT_BOTTOM" value="true" />
+    <option name="BIDI_TEXT_DIRECTION" value="LTR" />
   </component>
   <component name="TodoConfiguration">
     <pattern pattern="\btodo\b.*" />
