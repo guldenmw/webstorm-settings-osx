@@ -171,4 +171,10 @@
       <option name="TypeScript" value="true" />
     </context>
   </template>
+  <template name="jmstp" value="export const mapStateToProps = (state) =&gt; {&#10;  const $RESULT$ = $END$(state)&#10;&#10;  return {&#10;    $RESULT$,&#10;  }&#10;}" description="mapStateToProps boilerplate" toReformat="false" toShortenFQNames="true">
+    <variable name="RESULT" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="ECMAScript6" value="true" />
+    </context>
+  </template>
 </templateSet>
