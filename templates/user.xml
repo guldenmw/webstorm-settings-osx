@@ -75,7 +75,7 @@
       <option name="TS_STATEMENT" value="true" />
     </context>
   </template>
-  <template name="callback" value="const $NAME$ = useCallback(() =&gt; {&#10;  $END$&#10;}, [$DEPS$]);" description="Create a useCallback function" toReformat="false" toShortenFQNames="true">
+  <template name="callback" value="const $NAME$ = useCallback(() =&gt; {&#10;  $END$&#10;}, [$DEPS$])" description="Create a useCallback function" toReformat="false" toShortenFQNames="true">
     <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="DEPS" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
