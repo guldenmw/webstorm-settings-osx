@@ -4,7 +4,7 @@
       <option name="TS_STATEMENT" value="true" />
     </context>
   </template>
-  <template name="styled" value="import styled from 'styled-components';&#10;&#10;&#10;export const $STYLEDVAR$ = styled.div`&#10;  $END$&#10;`;&#10;" description="Typescript Styled Component Template" toReformat="false" toShortenFQNames="true">
+  <template name="styled" value="import styled from 'styled-components'&#10;&#10;&#10;export const $STYLEDVAR$ = styled.div`&#10;  $END$&#10;`&#10;" description="Typescript Styled Component Template" toReformat="false" toShortenFQNames="true">
     <variable name="STYLEDVAR" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="ECMAScript6" value="true" />

@@ -1,5 +1,5 @@
 <templateSet group="styles">
-  <template name="style" value="export const $NAME$ = styled.div`&#10;  $END$&#10;`;" description="Create styled component export" toReformat="false" toShortenFQNames="true">
+  <template name="style" value="export const $NAME$ = styled.div`&#10;  $END$&#10;`" description="Create styled component export" toReformat="false" toShortenFQNames="true">
     <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="ES6_STATEMENT" value="true" />
