@@ -7,6 +7,7 @@
       <mapping pattern="page-field" type="PLAIN_TEXT" />
       <mapping pattern="claimItemStatusNamedList.mock.json" type="PLAIN_TEXT" />
       <mapping pattern="definition-usage" type="PLAIN_TEXT" />
+      <mapping pattern=".env" type="PLAIN_TEXT" />
       <mapping pattern="ProjectCallToAction.tsx" type="PLAIN_TEXT" />
       <mapping pattern=".gitkeep" type="PLAIN_TEXT" />
       <mapping pattern="styles" type="PLAIN_TEXT" />
