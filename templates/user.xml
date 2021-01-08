@@ -184,4 +184,11 @@
       <option name="ES6_STATEMENT" value="true" />
     </context>
   </template>
+  <template name="wrap" value="&lt;$ELEMENT$&gt;&#10;  $SELECTION$&#10;&lt;/$ELEMENT$&gt;" description="Wrap selected in element" toReformat="false" toShortenFQNames="true">
+    <variable name="ELEMENT" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="JSX_HTML" value="true" />
+    </context>
+  </template>
 </templateSet>
