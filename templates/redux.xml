@@ -37,7 +37,7 @@
       <option name="JS_TOP_LEVEL_STATEMENT" value="true" />
     </context>
   </template>
-  <template name="apiact" value="export const $ACTION$_START = '$END$/$KEBAB$-start';&#10;export const $ACTION$_SUCCESS = '$END$/$KEBAB$-success';&#10;export const $ACTION$_ERROR = '$END$/$KEBAB$-error';&#10;&#10;&#10;export const $CAMEL$Start = data =&gt; ({&#10;  type: $ACTION$_START, data,&#10;});&#10;&#10;export const $CAMEL$Success = data =&gt; ({&#10;  type: $ACTION$_SUCCESS, data,&#10;});&#10;&#10;export const $CAMEL$Error = () =&gt; ({&#10;  type: $ACTION$_ERROR,&#10;});&#10;" description="Redux Start, Success, Error Actions" toReformat="false" toShortenFQNames="true">
+  <template name="apiact" value="export const $ACTION$_START = '$END$/$KEBAB$-start'&#10;export const $ACTION$_SUCCESS = '$END$/$KEBAB$-success'&#10;export const $ACTION$_ERROR = '$END$/$KEBAB$-error'&#10;&#10;&#10;export const $CAMEL$Start = data =&gt; ({&#10;  type: $ACTION$_START, data,&#10;})&#10;&#10;export const $CAMEL$Success = data =&gt; ({&#10;  type: $ACTION$_SUCCESS, data,&#10;})&#10;&#10;export const $CAMEL$Error = () =&gt; ({&#10;  type: $ACTION$_ERROR,&#10;})&#10;" description="Redux Start, Success, Error Actions" toReformat="false" toShortenFQNames="true">
     <variable name="ACTION" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="KEBAB" expression="lowercaseAndDash(ACTION)" defaultValue="" alwaysStopAt="false" />
     <variable name="CAMEL" expression="camelCase(ACTION)" defaultValue="" alwaysStopAt="false" />
@@ -107,6 +107,15 @@
       <option name="ES6_STATEMENT" value="true" />
       <option name="JS_STATEMENT" value="true" />
       <option name="TS_STATEMENT" value="true" />
+    </context>
+  </template>
+  <template name="worker" value="import {&#10;    $ACTION_IMPORT$_START,&#10;    $ACTION_CREATOR_SUCCESS$,&#10;    $ACTION_CREATOR_ERROR$,&#10;} from './actions'&#10;&#10;function* $ACTION_CREATOR$Saga(action) {&#10;  try {&#10;    const { data } = action&#10;    const response = yield call(axios.get, Api.$END$, data)&#10;&#10;    return yield put($ACTION_CREATOR_SUCCESS$(response))&#10;  } catch (ex) {&#10;    console.error(ex)&#10;&#10;    return yield put($ACTION_CREATOR_ERROR$())&#10;  }&#10;}&#10;" description="Create single Saga worker with network request" toReformat="true" toShortenFQNames="true">
+    <variable name="ACTION_CREATOR" expression="substringBefore(camelCase(ACTION), &quot;Start&quot;)" defaultValue="" alwaysStopAt="false" />
+    <variable name="ACTION_CREATOR_SUCCESS" expression="concat(ACTION_CREATOR, &quot;Success&quot;)" defaultValue="" alwaysStopAt="false" />
+    <variable name="ACTION_CREATOR_ERROR" expression="concat(ACTION_CREATOR, &quot;Error&quot;)" defaultValue="" alwaysStopAt="false" />
+    <variable name="ACTION_IMPORT" expression="capitalizeAndUnderscore(ACTION_CREATOR)" defaultValue="" alwaysStopAt="false" />
+    <context>
+      <option name="JS_TOP_LEVEL_STATEMENT" value="true" />
     </context>
   </template>
 </templateSet>
