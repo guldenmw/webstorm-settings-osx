@@ -39,7 +39,7 @@
       <option name="TS_STATEMENT" value="true" />
     </context>
   </template>
-  <template name="api" value="import { axios } from 'helpers'&#10;&#10;export enum $MODULE$ {&#10;  $ENDPOINT_NAME$ = '',&#10;}&#10;&#10;interface $INPUT_INTERFACE$ {}&#10;interface $REPONSE_INTERFACE$ {}&#10;&#10;/**&#10; * $NAME_DESC$ request&#10; */&#10;export const $NAME$Request = async (&#10;  data: $INPUT_INTERFACE$,&#10;): Promise&lt;$REPONSE_INTERFACE$&gt; =&gt; {&#10;  return axios.post($MODULE$.$ENDPOINT$, data)&#10;}&#10;" description="API request boilerplate with imports" toReformat="true" toShortenFQNames="true">
+  <template name="api" value="import { axios } from 'helpers'&#10;import { IGenericAxiosResponse } from 'interfaces'&#10;&#10;export enum $MODULE$ {&#10;  $ENDPOINT_NAME$ = '',&#10;}&#10;&#10;interface $INPUT_INTERFACE$ {}&#10;interface $REPONSE_INTERFACE$ {}&#10;&#10;/**&#10; * $NAME_DESC$ request&#10; */&#10;export const $NAME$Request = async (&#10;  data: $INPUT_INTERFACE$,&#10;): IGenericAxiosResponse&lt;$REPONSE_INTERFACE$&gt; =&gt; {&#10;  return axios.post($MODULE$.$ENDPOINT$, data)&#10;}&#10;" description="API request boilerplate with imports" toReformat="true" toShortenFQNames="true">
     <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="ENDPOINT_NAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="ENDPOINT" expression="ENDPOINT_NAME" defaultValue="" alwaysStopAt="false" />
@@ -168,7 +168,7 @@
       <option name="JSX_HTML" value="true" />
     </context>
   </template>
-  <template name="gapi" value="import { axios } from 'helpers'&#10;&#10;export enum $MODULE$ {&#10;  $ENDPOINT_NAME$ = '',&#10;}&#10;&#10;interface $REPONSE_INTERFACE$ {}&#10;&#10;/**&#10; * $NAME_DESC$ request&#10; */&#10;export const $NAME$Request = async (): Promise&lt;$REPONSE_INTERFACE$&gt; =&gt; {&#10;  return axios.get($MODULE$.$ENDPOINT$)&#10;}&#10;" description="API GET request boilerplate" toReformat="true" toShortenFQNames="true">
+  <template name="gapi" value="import { axios } from 'helpers'&#10;import { IGenericAxiosResponse } from 'interfaces'&#10;&#10;export enum $MODULE$ {&#10;  $ENDPOINT_NAME$ = '',&#10;}&#10;&#10;interface $REPONSE_INTERFACE$ {}&#10;&#10;/**&#10; * $NAME_DESC$ request&#10; */&#10;export const $NAME$Request = async (): IGenericAxiosResponse&lt;$REPONSE_INTERFACE$&gt; =&gt; {&#10;  return axios.get($MODULE$.$ENDPOINT$)&#10;}&#10;" description="API GET request boilerplate" toReformat="true" toShortenFQNames="true">
     <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="ENDPOINT_NAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="ENDPOINT" expression="ENDPOINT_NAME" defaultValue="" alwaysStopAt="false" />
@@ -179,7 +179,7 @@
       <option name="TS_STATEMENT" value="true" />
     </context>
   </template>
-  <template name="gsapi" value="interface $REPONSE_INTERFACE$ {}&#10;&#10;/**&#10; * $NAME_DESC$ request&#10; */&#10;export const $NAME$Request = async (): Promise&lt;$REPONSE_INTERFACE$&gt; =&gt; {&#10;  return axios.get($MODULE$.$ENDPOINT$)&#10;}&#10;" description="Single GET API request boilerplate" toReformat="true" toShortenFQNames="true">
+  <template name="gsapi" value="interface $REPONSE_INTERFACE$ {}&#10;&#10;/**&#10; * $NAME_DESC$ request&#10; */&#10;export const $NAME$Request = async (): IGenericAxiosResponse&lt;$REPONSE_INTERFACE$&gt; =&gt; {&#10;  return axios.get($MODULE$.$ENDPOINT$)&#10;}&#10;" description="Single GET API request boilerplate" toReformat="true" toShortenFQNames="true">
     <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="ENDPOINT" expression="ENDPOINT_NAME" defaultValue="" alwaysStopAt="false" />
     <variable name="NAME_DESC" expression="capitalize(underscoresToSpaces(snakeCase(NAME)))" defaultValue="" alwaysStopAt="false" />
