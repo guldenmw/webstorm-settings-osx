@@ -37,9 +37,10 @@
       <option name="JS_TOP_LEVEL_STATEMENT" value="true" />
     </context>
   </template>
-  <template name="apiact" value="export const $ACTION$_START = '$PREFIX$/$ACTION$_START'&#10;export const $ACTION$_SUCCESS = '$PREFIX$/$ACTION$_SUCCESS'&#10;export const $ACTION$_ERROR = '$PREFIX$/$ACTION$_ERROR'&#10;&#10;&#10;export const $CAMEL$Start = data =&gt; ({&#10;  type: $ACTION$_START, data,&#10;})&#10;&#10;export const $CAMEL$Success = data =&gt; ({&#10;  type: $ACTION$_SUCCESS, data,&#10;})&#10;&#10;export const $CAMEL$Error = () =&gt; ({&#10;  type: $ACTION$_ERROR,&#10;})&#10;" description="Redux Start, Success, Error Actions" toReformat="false" toShortenFQNames="true">
+  <template name="apiact" value="export const $ACTION$_START = '$PREFIX$/$ACTION$_START'&#10;export const $ACTION$_SUCCESS = '$PREFIX$/$ACTION$_SUCCESS'&#10;export const $ACTION$_ERROR = '$PREFIX$/$ACTION$_ERROR'&#10;&#10;&#10;/*&#10; * $NAME_DESC$ actions&#10; */&#10;export const $CAMEL$Start = data =&gt; ({&#10;  type: $ACTION$_START, data,&#10;})&#10;&#10;export const $CAMEL$Success = data =&gt; ({&#10;  type: $ACTION$_SUCCESS, data,&#10;})&#10;&#10;export const $CAMEL$Error = () =&gt; ({&#10;  type: $ACTION$_ERROR,&#10;})&#10;" description="Redux Start, Success, Error Actions" toReformat="false" toShortenFQNames="true">
     <variable name="ACTION" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="PREFIX" expression="regularExpression(fileRelativePath(), &quot;.*[/]([a-z]+?)(?=[/]actions).*&quot;, &quot;$1&quot;)" defaultValue="" alwaysStopAt="false" />
+    <variable name="NAME_DESC" expression="capitalize(underscoresToSpaces(snakeCase(CAMEL)))" defaultValue="" alwaysStopAt="false" />
     <variable name="CAMEL" expression="camelCase(ACTION)" defaultValue="" alwaysStopAt="false" />
     <context>
       <option name="JAVA_SCRIPT" value="true" />
@@ -109,10 +110,13 @@
       <option name="TS_STATEMENT" value="true" />
     </context>
   </template>
-  <template name="worker" value="import { all, call, put, takeLatest } from 'redux-saga/effects'&#10;import { axios } from 'helpers'&#10;&#10;import { $MODULE_API$ } from './api'&#10;import {  } from './interfaces'&#10;import {&#10;    $ACTION_SUCCESS$,&#10;    $ACTION_ERROR$,&#10;} from './actions'&#10;&#10;export function* $ACTION_CREATOR$Saga(action) {&#10;  try {&#10;    const { data } = action&#10;    const response = yield call(axios.get, Api.$END$, data)&#10;&#10;    return yield put($ACTION_SUCCESS$(response))&#10;  } catch (ex) {&#10;    console.error(ex)&#10;&#10;    return yield put($ACTION_ERROR$())&#10;  }&#10;}&#10;" description="Create single Saga worker with network request" toReformat="true" toShortenFQNames="true">
-    <variable name="MODULE_API" expression="concat(capitalize(regularExpression(fileRelativePath(), &quot;.*[/]([a-z]+?)(?=[/]sagas).*&quot;, &quot;$1&quot;)), &quot;Api&quot;)" defaultValue="" alwaysStopAt="false" />
+  <template name="worker" value="import { call, put } from 'redux-saga/effects'&#10;&#10;import {&#10;    $ACTION_SUCCESS$,&#10;    $ACTION_ERROR$,&#10;    $MODULE_ACTION_INTERFACE$&#10;    $ACTION_START_INTERFACE$&#10;} from 'modules/$MODULE$'&#10;&#10;export function* $FILE_NAME$Saga(action: $MODULE_ACTION_INTERFACE$&lt;$ACTION_START_INTERFACE$&gt;) {&#10;  try {&#10;    const { data } = action&#10;&#10;    return yield put($ACTION_CREATOR$Success())&#10;  } catch (ex) {&#10;    console.error(ex)&#10;&#10;    return yield put($ACTION_ERROR$(ex))&#10;  }&#10;}&#10;" description="Create single Saga worker with network request" toReformat="true" toShortenFQNames="true">
     <variable name="ACTION_CREATOR" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="MODULE" expression="regularExpression(fileRelativePath(), &quot;.*[/]([a-z]+?)(?=[/]sagas).*&quot;, &quot;$1&quot;))" defaultValue="" alwaysStopAt="false" />
+    <variable name="FILE_NAME" expression="camelCase(fileNameWithoutExtension())" defaultValue="" alwaysStopAt="false" />
     <variable name="ACTION_SUCCESS" expression="concat(ACTION_CREATOR, &quot;Success&quot;)" defaultValue="" alwaysStopAt="false" />
+    <variable name="MODULE_ACTION_INTERFACE" expression="concat(concat(&quot;I&quot;, capitalize(MODULE)), &quot;Action&quot;)" defaultValue="" alwaysStopAt="false" />
+    <variable name="ACTION_START_INTERFACE" expression="concat(&quot;I&quot;, concat(capitalize(ACTION_CREATOR), &quot;Start&quot;))" defaultValue="" alwaysStopAt="false" />
     <variable name="ACTION_ERROR" expression="concat(ACTION_CREATOR, &quot;Error&quot;)" defaultValue="" alwaysStopAt="false" />
     <context>
       <option name="JS_TOP_LEVEL_STATEMENT" value="true" />
