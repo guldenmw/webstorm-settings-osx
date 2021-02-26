@@ -64,10 +64,11 @@
       <option name="TS_STATEMENT" value="true" />
     </context>
   </template>
-  <template name="res" value="const $FUNC_NAME$ = createSelector(&#10;  [$SELECTOR$],&#10;  ($SELECTOR_RETURN$) =&gt; $END$,&#10;)&#10;" description="Create Reselect Selector" toReformat="false" toShortenFQNames="true">
+  <template name="restat" value="const $FUNC_NAME$ = createSelector&lt;IApplicationState, $SELECTOR_STATE$, IGenericStatus&lt;$ERROR_TYPE$&gt;&gt;(&#10;  [$SELECTOR$],&#10;  ({ isLoading, error }) =&gt; ({&#10;    isLoading,&#10;    error,&#10;  }),&#10;)&#10;" description="Create Reselect Status Selector" toReformat="false" toShortenFQNames="true">
     <variable name="FUNC_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="SELECTOR_STATE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ERROR_TYPE" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="SELECTOR" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="SELECTOR_RETURN" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="JS_STATEMENT" value="true" />
     </context>
@@ -151,6 +152,16 @@
     <variable name="MODULE_ACTION_INTERFACE" expression="concat(concat(&quot;I&quot;, capitalize(MODULE)), &quot;Action&quot;)" defaultValue="" alwaysStopAt="false" />
     <context>
       <option name="JS_TOP_LEVEL_STATEMENT" value="true" />
+    </context>
+  </template>
+  <template name="res" value="const $FUNC_NAME$ = createSelector&lt;IApplicationState, $SELECTOR_STATE$, $RESPONSE_TYPE$&gt;(&#10;  [$SELECTOR$],&#10;  ($SELECTOR_RESPONSE$) =&gt; $END$,&#10;)&#10;" description="Create Reselect Selector" toReformat="false" toShortenFQNames="true">
+    <variable name="FUNC_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="SELECTOR_STATE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="RESPONSE_TYPE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="SELECTOR" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="SELECTOR_RESPONSE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JS_STATEMENT" value="true" />
     </context>
   </template>
 </templateSet>
