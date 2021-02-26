@@ -37,7 +37,7 @@
       <option name="JS_TOP_LEVEL_STATEMENT" value="true" />
     </context>
   </template>
-  <template name="apiact" value="export const $ACTION$_START = '$PREFIX$/$ACTION$_START'&#10;export const $ACTION$_SUCCESS = '$PREFIX$/$ACTION$_SUCCESS'&#10;export const $ACTION$_ERROR = '$PREFIX$/$ACTION$_ERROR'&#10;&#10;&#10;/*&#10; * $NAME_DESC$ actions&#10; */&#10;export const $ACTION_CREATOR$Start = (data: I$ACTION_CREATOR_INTERFACE$Start) =&gt; ({&#10;  type: $ACTION$_START, data,&#10;})&#10;&#10;export const $ACTION_CREATOR$Success = (data: I$ACTION_CREATOR_INTERFACE$Success) =&gt; ({&#10;  type: $ACTION$_SUCCESS, data,&#10;})&#10;&#10;export const $ACTION_CREATOR$Error = (data: I$ACTION_CREATOR_INTERFACE$Error) =&gt; ({&#10;  type: $ACTION$_ERROR,&#10;})&#10;" description="Redux Start, Success, Error Actions" toReformat="false" toShortenFQNames="true">
+  <template name="apiact" value="export const $ACTION$_START = '$PREFIX$/$ACTION$_START'&#10;export const $ACTION$_SUCCESS = '$PREFIX$/$ACTION$_SUCCESS'&#10;export const $ACTION$_ERROR = '$PREFIX$/$ACTION$_ERROR'&#10;&#10;&#10;/*&#10; * $NAME_DESC$ actions&#10; */&#10;export const $ACTION_CREATOR$Start = (data: I$ACTION_CREATOR_INTERFACE$Start) =&gt; ({&#10;  type: $ACTION$_START, data,&#10;})&#10;&#10;export const $ACTION_CREATOR$Success = (data: I$ACTION_CREATOR_INTERFACE$Success) =&gt; ({&#10;  type: $ACTION$_SUCCESS, data,&#10;})&#10;&#10;export const $ACTION_CREATOR$Error = (data: I$ACTION_CREATOR_INTERFACE$Error) =&gt; ({&#10;  type: $ACTION$_ERROR, data,&#10;})&#10;" description="Redux Start, Success, Error Actions" toReformat="false" toShortenFQNames="true">
     <variable name="ACTION" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="PREFIX" expression="regularExpression(fileRelativePath(), &quot;.*[/]([a-z]+?)(?=[/]actions).*&quot;, &quot;$1&quot;)" defaultValue="" alwaysStopAt="false" />
     <variable name="NAME_DESC" expression="capitalize(underscoresToSpaces(snakeCase(CAMEL)))" defaultValue="" alwaysStopAt="false" />
@@ -111,7 +111,7 @@
       <option name="TS_STATEMENT" value="true" />
     </context>
   </template>
-  <template name="worker" value="import { call, put } from 'redux-saga/effects'&#10;&#10;import {&#10;    $ACTION_SUCCESS$,&#10;    $ACTION_ERROR$,&#10;    $MODULE_ACTION_INTERFACE$&#10;    $ACTION_START_INTERFACE$&#10;} from 'modules/$MODULE$'&#10;&#10;export function* $FILE_NAME$Saga(action: $MODULE_ACTION_INTERFACE$&lt;$ACTION_START_INTERFACE$&gt;) {&#10;  try {&#10;    const { data } = action&#10;&#10;    return yield put($ACTION_CREATOR$Success())&#10;  } catch (ex) {&#10;    console.error(ex)&#10;&#10;    return yield put($ACTION_ERROR$(ex))&#10;  }&#10;}&#10;" description="Create single Saga worker with network request" toReformat="true" toShortenFQNames="true">
+  <template name="rworker" value="import { call, put } from 'redux-saga/effects'&#10;&#10;import {&#10;    $ACTION_SUCCESS$,&#10;    $ACTION_ERROR$,&#10;    $MODULE_ACTION_INTERFACE$&#10;    $ACTION_START_INTERFACE$&#10;} from 'modules/$MODULE$'&#10;&#10;export function* $FILE_NAME$Saga(action: $MODULE_ACTION_INTERFACE$&lt;$ACTION_START_INTERFACE$&gt;) {&#10;  try {&#10;    const { data } = action&#10;&#10;    return yield put($ACTION_CREATOR$Success())&#10;  } catch (ex) {&#10;    console.error(ex)&#10;&#10;    return yield put($ACTION_ERROR$(ex))&#10;  }&#10;}&#10;" description="Create single Saga worker with network request" toReformat="true" toShortenFQNames="true">
     <variable name="ACTION_CREATOR" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="MODULE" expression="regularExpression(fileRelativePath(), &quot;.*[/]([a-z]+?)(?=[/]sagas).*&quot;, &quot;$1&quot;))" defaultValue="" alwaysStopAt="false" />
     <variable name="FILE_NAME" expression="camelCase(fileNameWithoutExtension())" defaultValue="" alwaysStopAt="false" />
@@ -140,6 +140,17 @@
     <variable name="NAME_DESC" expression="capitalize(underscoresToSpaces(snakeCase(ACTION_CREATOR)))" defaultValue="" alwaysStopAt="false" />
     <context>
       <option name="JAVA_SCRIPT" value="true" />
+    </context>
+  </template>
+  <template name="worker" value="import { call, put } from 'redux-saga/effects'&#10;&#10;import {&#10;    $ACTION_SUCCESS$,&#10;    $ACTION_ERROR$,&#10;    $MODULE_ACTION_INTERFACE$,&#10;    $ACTION_START_INTERFACE$,&#10;} from 'modules/$MODULE$'&#10;&#10;export function* $FILE_NAME$Saga(action: $MODULE_ACTION_INTERFACE$&lt;$ACTION_START_INTERFACE$&gt;) {&#10;  try {&#10;    const { data } = action&#10;&#10;    return yield put($ACTION_SUCCESS$())&#10;  } catch (ex) {&#10;    console.error(ex)&#10;&#10;    return yield put($ACTION_ERROR$(ex))&#10;  }&#10;}&#10;" description="Create single Saga worker with network request that match action names" toReformat="true" toShortenFQNames="true">
+    <variable name="MODULE" expression="regularExpression(fileRelativePath(), &quot;.*[/]([a-z]+?)(?=[/]sagas).*&quot;, &quot;$1&quot;))" defaultValue="" alwaysStopAt="false" />
+    <variable name="FILE_NAME" expression="camelCase(fileNameWithoutExtension())" defaultValue="" alwaysStopAt="false" />
+    <variable name="ACTION_SUCCESS" expression="concat(FILE_NAME, &quot;Success&quot;)" defaultValue="" alwaysStopAt="false" />
+    <variable name="ACTION_ERROR" expression="concat(FILE_NAME, &quot;Error&quot;)" defaultValue="" alwaysStopAt="false" />
+    <variable name="ACTION_START_INTERFACE" expression="concat(&quot;I&quot;, concat(capitalize(FILE_NAME), &quot;Start&quot;))" defaultValue="" alwaysStopAt="false" />
+    <variable name="MODULE_ACTION_INTERFACE" expression="concat(concat(&quot;I&quot;, capitalize(MODULE)), &quot;Action&quot;)" defaultValue="" alwaysStopAt="false" />
+    <context>
+      <option name="JS_TOP_LEVEL_STATEMENT" value="true" />
     </context>
   </template>
 </templateSet>
