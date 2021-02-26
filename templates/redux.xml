@@ -37,11 +37,12 @@
       <option name="JS_TOP_LEVEL_STATEMENT" value="true" />
     </context>
   </template>
-  <template name="apiact" value="export const $ACTION$_START = '$PREFIX$/$ACTION$_START'&#10;export const $ACTION$_SUCCESS = '$PREFIX$/$ACTION$_SUCCESS'&#10;export const $ACTION$_ERROR = '$PREFIX$/$ACTION$_ERROR'&#10;&#10;&#10;/*&#10; * $NAME_DESC$ actions&#10; */&#10;export const $CAMEL$Start = data =&gt; ({&#10;  type: $ACTION$_START, data,&#10;})&#10;&#10;export const $CAMEL$Success = data =&gt; ({&#10;  type: $ACTION$_SUCCESS, data,&#10;})&#10;&#10;export const $CAMEL$Error = () =&gt; ({&#10;  type: $ACTION$_ERROR,&#10;})&#10;" description="Redux Start, Success, Error Actions" toReformat="false" toShortenFQNames="true">
+  <template name="apiact" value="export const $ACTION$_START = '$PREFIX$/$ACTION$_START'&#10;export const $ACTION$_SUCCESS = '$PREFIX$/$ACTION$_SUCCESS'&#10;export const $ACTION$_ERROR = '$PREFIX$/$ACTION$_ERROR'&#10;&#10;&#10;/*&#10; * $NAME_DESC$ actions&#10; */&#10;export const $ACTION_CREATOR$Start = (data: I$ACTION_CREATOR_INTERFACE$Start) =&gt; ({&#10;  type: $ACTION$_START, data,&#10;})&#10;&#10;export const $ACTION_CREATOR$Success = (data: I$ACTION_CREATOR_INTERFACE$Success) =&gt; ({&#10;  type: $ACTION$_SUCCESS, data,&#10;})&#10;&#10;export const $ACTION_CREATOR$Error = (data: I$ACTION_CREATOR_INTERFACE$Error) =&gt; ({&#10;  type: $ACTION$_ERROR,&#10;})&#10;" description="Redux Start, Success, Error Actions" toReformat="false" toShortenFQNames="true">
     <variable name="ACTION" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="PREFIX" expression="regularExpression(fileRelativePath(), &quot;.*[/]([a-z]+?)(?=[/]actions).*&quot;, &quot;$1&quot;)" defaultValue="" alwaysStopAt="false" />
     <variable name="NAME_DESC" expression="capitalize(underscoresToSpaces(snakeCase(CAMEL)))" defaultValue="" alwaysStopAt="false" />
-    <variable name="CAMEL" expression="camelCase(ACTION)" defaultValue="" alwaysStopAt="false" />
+    <variable name="ACTION_CREATOR" expression="camelCase(ACTION)" defaultValue="" alwaysStopAt="false" />
+    <variable name="ACTION_CREATOR_INTERFACE" expression="capitalize(ACTION_CREATOR" defaultValue="" alwaysStopAt="false" />
     <context>
       <option name="JAVA_SCRIPT" value="true" />
     </context>
@@ -132,6 +133,13 @@
     <variable name="FILE_NAME" expression="camelCase(fileNameWithoutExtension())" defaultValue="" alwaysStopAt="false" />
     <context>
       <option name="JS_TOP_LEVEL_STATEMENT" value="true" />
+    </context>
+  </template>
+  <template name="iaa" value="&#10;/*&#10; * $NAME_DESC$ action interfaces&#10; */&#10;export interface I$ACTION_CREATOR$Start {&#10;  [x: string]: any;&#10;}&#10;&#10;export interface I$ACTION_CREATOR$Success {&#10;  [x: string]: any;&#10;}&#10;&#10;export interface I$ACTION_CREATOR$Error {&#10;  [x: string]: any;&#10;}&#10;" description="Start, Success, Error action interfaces" toReformat="false" toShortenFQNames="true">
+    <variable name="ACTION_CREATOR" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="NAME_DESC" expression="capitalize(underscoresToSpaces(snakeCase(ACTION_CREATOR)))" defaultValue="" alwaysStopAt="false" />
+    <context>
+      <option name="JAVA_SCRIPT" value="true" />
     </context>
   </template>
 </templateSet>
