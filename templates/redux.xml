@@ -124,7 +124,7 @@
       <option name="JS_TOP_LEVEL_STATEMENT" value="true" />
     </context>
   </template>
-  <template name="tst" value="$TEST$" toReformat="false" toShortenFQNames="true">
+  <template name="tst" value="$TEST$" description="" toReformat="false" toShortenFQNames="true">
     <variable name="TEST" expression="concat(capitalize(regularExpression(fileRelativePath(), &quot;.*[/]([a-z]+?)(?=[/]sagas).*&quot;, &quot;$1&quot;)), &quot;Api&quot;)" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="JAVA_SCRIPT" value="true" />
