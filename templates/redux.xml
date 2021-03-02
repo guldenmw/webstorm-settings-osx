@@ -164,7 +164,7 @@
       <option name="JS_STATEMENT" value="true" />
     </context>
   </template>
-  <template name="sel" value="export const $SELECTORNAME$ = (state: IApplicationState): $INTERFACE$ =&gt; (&#10;  state.$END$&#10;)&#10;" description="Create new selector" toReformat="false" toShortenFQNames="true">
+  <template name="sel" value="export const select$SELECTORNAME$ = (state: IApplicationState): $INTERFACE$ =&gt; (&#10;  state.$END$&#10;)&#10;" description="Create new selector" toReformat="false" toShortenFQNames="true">
     <variable name="SELECTORNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="INTERFACE" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
