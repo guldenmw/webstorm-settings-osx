@@ -4,9 +4,11 @@
       <option name="TS_STATEMENT" value="true" />
     </context>
   </template>
-  <template name="styled" value="import styled from 'styled-components';&#10;&#10;&#10;export const $STYLEDVAR$ = styled.div&lt;any&gt;`&#10;  $END$&#10;`;&#10;" description="Typescript Styled Component Template" toReformat="false" toShortenFQNames="true">
+  <template name="styled" value="import styled from 'styled-components'&#10;&#10;export const $STYLEDVAR$ = styled.div`&#10;  $END$&#10;`&#10;" description="Typescript Styled Component Template" toReformat="false" toShortenFQNames="true">
     <variable name="STYLEDVAR" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
+      <option name="ECMAScript6" value="true" />
+      <option name="JAVA_SCRIPT" value="true" />
       <option name="TS_STATEMENT" value="true" />
     </context>
   </template>
@@ -15,8 +17,8 @@
       <option name="TS_STATEMENT" value="true" />
     </context>
   </template>
-  <template name="sfc" value="import React, { FC } from 'react';&#10;&#10;interface IProps {&#10;  [x: string]: any;&#10;}&#10;&#10;const $COMPONENT_NAME$: FC&lt;IProps&gt; = (props) =&gt; {&#10;  const { $END$ } = props;&#10;  return (&#10;    &lt;div&gt;&#10;&#10;    &lt;/div&gt;&#10;  );&#10;};&#10;&#10;$COMPONENT_NAME$.defaultProps = {};&#10;&#10;export default $COMPONENT_NAME$;&#10;" description="React Stateless Component" toReformat="false" toShortenFQNames="true">
-    <variable name="COMPONENT_NAME" expression="" defaultValue="ComponentName" alwaysStopAt="true" />
+  <template name="sfc" value="import React, { FC } from 'react'&#10;&#10;interface I$COMPONENT_NAME$Props {&#10;  [x: string]: any&#10;}&#10;&#10;const $COMPONENT_NAME$: FC&lt;I$COMPONENT_NAME$Props&gt; = (props) =&gt; {&#10;  const { $END$ } = props&#10;  return (&#10;    &lt;div&gt;&#10;&#10;    &lt;/div&gt;&#10;  )&#10;}&#10;&#10;$COMPONENT_NAME$.defaultProps = {}&#10;&#10;export default $COMPONENT_NAME$&#10;" description="TypeScript React Stateless Component" toReformat="false" toShortenFQNames="true">
+    <variable name="COMPONENT_NAME" expression="fileNameWithoutExtension()" defaultValue="ComponentName" alwaysStopAt="false" />
     <context>
       <option name="TS_STATEMENT" value="true" />
     </context>
@@ -37,26 +39,19 @@
       <option name="TS_STATEMENT" value="true" />
     </context>
   </template>
-  <template name="saga" value="import { call, put, select, takeLatest } from 'redux-saga/effects';$END$&#10;&#10;function* sagaWorker(action) {&#10;  try {&#10;    const { data } = action;&#10;    return yield put(() =&gt; {});&#10;  } catch (ex) {&#10;    console.error(ex);&#10;    return yield put(() =&gt; {});&#10;  }&#10;}&#10;&#10;function* $NAME$() {&#10;  yield takeLatest(['ACTION_NAME'], sagaWorker);&#10;}&#10;&#10;export default $NAME$;&#10;" description="" toReformat="false" toShortenFQNames="true">
+  <template name="api" value="import { axios } from 'helpers'&#10;import { IGenericAxiosResponse } from 'interfaces'&#10;&#10;export enum $MODULE$ {&#10;  $ENDPOINT_NAME$ = '',&#10;}&#10;&#10;interface $INPUT_INTERFACE$ {}&#10;interface $REPONSE_INTERFACE$ {}&#10;&#10;/**&#10; * $NAME_DESC$ request&#10; */&#10;export const $NAME$Request = async (&#10;  data: $INPUT_INTERFACE$,&#10;): IGenericAxiosResponse&lt;$REPONSE_INTERFACE$&gt; =&gt; {&#10;  return axios.post($MODULE$.$ENDPOINT$, data)&#10;}&#10;" description="API request boilerplate with imports" toReformat="true" toShortenFQNames="true">
     <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ENDPOINT_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ENDPOINT" expression="ENDPOINT_NAME" defaultValue="" alwaysStopAt="false" />
+    <variable name="REPONSE_INTERFACE" expression="concat(concat(&quot;I&quot;, capitalize(NAME)), &quot;Response&quot;)" defaultValue="" alwaysStopAt="false" />
+    <variable name="NAME_DESC" expression="capitalize(underscoresToSpaces(snakeCase(NAME)))" defaultValue="" alwaysStopAt="false" />
+    <variable name="INPUT_INTERFACE" expression="concat(concat(&quot;I&quot;, capitalize(NAME)), &quot;Input&quot;)" defaultValue="" alwaysStopAt="false" />
+    <variable name="MODULE" expression="capitalize(concat(regularExpression(fileRelativePath(), &quot;.*[/]([a-z]+?)(?=[/]api).*&quot;, &quot;$1&quot;), &quot;Api&quot;))" defaultValue="" alwaysStopAt="false" />
     <context>
       <option name="TS_STATEMENT" value="true" />
     </context>
   </template>
-  <template name="api" value="import { generateOptions } from '~/apis';&#10;import { handleResponse } from '~/shared/helpers';&#10;&#10;const { API_BASE_PATH } = process.env;&#10;&#10;const $NAME$ = async (token: string) =&gt; {&#10;  const url = `${API_BASE_PATH}/`;&#10;  const options = generateOptions(token);&#10;  const response = await fetch(url, options);&#10;  handleResponse(response);&#10;  return await response.json();&#10;};&#10;&#10;export default $NAME$;&#10;" description="API request boilerplate" toReformat="true" toShortenFQNames="true">
-    <variable name="NAME" expression="" defaultValue="apiRequest" alwaysStopAt="true" />
-    <context>
-      <option name="TS_STATEMENT" value="true" />
-    </context>
-  </template>
-  <template name="reducer" value="// import {&#10;&#10;// } from '../actions';&#10;&#10;export interface I$BIG_REDUCER_NAME$State {&#10;  [x: string]: any;&#10;}&#10;&#10;const initialState: I$BIG_REDUCER_NAME$State = {};&#10;&#10;const $REDUCER_NAME$ = (state = initialState, action): I$BIG_REDUCER_NAME$State =&gt; {&#10;  const { type, data } = action;&#10;  switch (type) {&#10;    default:&#10;      return state;&#10;  }&#10;};&#10;&#10;export default $REDUCER_NAME$;&#10;" description="redux reducer" toReformat="false" toShortenFQNames="true">
-    <variable name="REDUCER_NAME" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="BIG_REDUCER_NAME" expression="capitalize(String)" defaultValue="capitalize(REDUCER_NAME)" alwaysStopAt="false" />
-    <context>
-      <option name="TS_STATEMENT" value="true" />
-    </context>
-  </template>
-  <template name="test" value="describe('$MODULE_BEING_TESTED$', () =&gt; {&#10;  it('should $TEST_EXPECTATION$', () =&gt; {&#10;    const testData = '';&#10;    const expectedResponse = '';&#10;&#10;    expect($FUNCTION$(testData$END$)).toEqual(expectedResponse);&#10;  });&#10;});" description="Jest test boilerplate" toReformat="false" toShortenFQNames="true">
+  <template name="test" value="describe('$MODULE_BEING_TESTED$', () =&gt; {&#10;  it('should $TEST_EXPECTATION$', () =&gt; {&#10;    const testData = ''&#10;    const expectedResponse = ''&#10;&#10;    expect($FUNCTION$(testData$END$)).toEqual(expectedResponse)&#10;  })&#10;})" description="Jest test boilerplate" toReformat="false" toShortenFQNames="true">
     <variable name="MODULE_BEING_TESTED" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="TEST_EXPECTATION" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="FUNCTION" expression="" defaultValue="" alwaysStopAt="true" />
@@ -65,7 +60,7 @@
       <option name="TS_STATEMENT" value="true" />
     </context>
   </template>
-  <template name="vlog" value="console.log('$VARSTRING$: ', $VAR$);" description="Log a variable to console" toReformat="false" toShortenFQNames="true">
+  <template name="vlog" value="console.log('$VARSTRING$: ', $VAR$)" description="Log a variable to console" toReformat="false" toShortenFQNames="true">
     <variable name="VAR" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="VARSTRING" expression="" defaultValue="VAR" alwaysStopAt="false" />
     <context>
@@ -73,7 +68,7 @@
       <option name="TS_STATEMENT" value="true" />
     </context>
   </template>
-  <template name="callback" value="const $NAME$ = useCallback(() =&gt; {&#10;  $END$&#10;}, [$DEPS$]);" description="Create a useCallback function" toReformat="false" toShortenFQNames="true">
+  <template name="callback" value="const $NAME$ = useCallback(() =&gt; {&#10;  $END$&#10;}, [$DEPS$])" description="Create a useCallback function" toReformat="false" toShortenFQNames="true">
     <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="DEPS" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
@@ -81,14 +76,14 @@
       <option name="TS_STATEMENT" value="true" />
     </context>
   </template>
-  <template name="effect" value="useEffect(() =&gt; {&#10;  $END$&#10;}, [$DEPS$]);" description="Create a useEffect function" toReformat="false" toShortenFQNames="true">
+  <template name="effect" value="useEffect(() =&gt; {&#10;  $END$&#10;}, [$DEPS$])" description="Create a useEffect function" toReformat="false" toShortenFQNames="true">
     <variable name="DEPS" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="ES6_STATEMENT" value="true" />
       <option name="TS_STATEMENT" value="true" />
     </context>
   </template>
-  <template name="debug" value="console.log('--debug: $MESSAGE$');" description="Log a debug message to console" toReformat="false" toShortenFQNames="true">
+  <template name="debug" value="console.log('--debug: $MESSAGE$')" description="Log a debug message to console" toReformat="false" toShortenFQNames="true">
     <variable name="MESSAGE" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="ES6_STATEMENT" value="true" />
@@ -96,14 +91,7 @@
       <option name="TS_STATEMENT" value="true" />
     </context>
   </template>
-  <template name="select" value="import { IApplicationState } from '~/core/reducer';&#10;&#10;/**&#10; * $END$&#10; */&#10;export const $SELECTORNAME$ = (state: IApplicationState) =&gt; {&#10;  state?.$PATH$;&#10;};&#10;" description="Create new selector" toReformat="false" toShortenFQNames="true">
-    <variable name="SELECTORNAME" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="PATH" expression="" defaultValue="" alwaysStopAt="true" />
-    <context>
-      <option name="TS_STATEMENT" value="true" />
-    </context>
-  </template>
-  <template name="memo" value="const $NAME$ = useMemo(() =&gt; {&#10;  $END$&#10;}, [$DEPS$]);" description="Create a useMemo function" toReformat="false" toShortenFQNames="true">
+  <template name="memo" value="const $NAME$ = useMemo(() =&gt; {&#10;  $END$&#10;}, [$DEPS$])" description="Create a useMemo function" toReformat="false" toShortenFQNames="true">
     <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="DEPS" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
@@ -117,7 +105,7 @@
       <option name="TS_STATEMENT" value="true" />
     </context>
   </template>
-  <template name="ustt" value="const [$VAR$, set$CAPVAR$] = useState&lt;$TYPE$&gt;($END$);" description="React useState Hook" toReformat="false" toShortenFQNames="true">
+  <template name="ustt" value="const [$VAR$, set$CAPVAR$] = useState&lt;$TYPE$&gt;($END$)" description="React useState Hook" toReformat="false" toShortenFQNames="true">
     <variable name="VAR" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="CAPVAR" expression="capitalize(VAR)" defaultValue="" alwaysStopAt="false" />
     <variable name="TYPE" expression="" defaultValue="" alwaysStopAt="true" />
@@ -125,7 +113,7 @@
       <option name="TS_STATEMENT" value="true" />
     </context>
   </template>
-  <template name="ust" value="const [$VAR$, set$CAPVAR$] = useState($END$);" description="React useState Hook" toReformat="false" toShortenFQNames="true">
+  <template name="ust" value="const [$VAR$, set$CAPVAR$] = useState($END$)" description="React useState Hook" toReformat="false" toShortenFQNames="true">
     <variable name="VAR" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="CAPVAR" expression="capitalize(VAR)" defaultValue="" alwaysStopAt="false" />
     <context>
@@ -154,11 +142,50 @@
       <option name="JAVA_SCRIPT" value="true" />
     </context>
   </template>
-  <template name="wsaga" value="import { call, put, select, takeLatest } from 'redux-saga/effects';&#10;&#10;function* $NAME$(action) {&#10;  try {&#10;    const { data } = action;&#10;    $END$&#10;    return yield put(() =&gt; {});&#10;  } catch (ex) {&#10;    console.error(ex);&#10;    return yield put(() =&gt; {});&#10;  }&#10;}&#10;&#10;export default $NAME$;&#10;" description="Saga Worker" toReformat="false" toShortenFQNames="true">
-    <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
+  <template name="jsfc" value="import React from 'react'&#10;&#10;const $COMPONENT_NAME$ = (props) =&gt; {&#10;  const { $END$ } = props&#10;  return (&#10;    &lt;div&gt;&#10;&#10;    &lt;/div&gt;&#10;  )&#10;}&#10;&#10;$COMPONENT_NAME$.defaultProps = {}&#10;&#10;export default $COMPONENT_NAME$&#10;" description="JavaScript React Stateless Component" toReformat="false" toShortenFQNames="true">
+    <variable name="COMPONENT_NAME" expression="" defaultValue="ComponentName" alwaysStopAt="true" />
+    <context>
+      <option name="ECMAScript6" value="true" />
+      <option name="TypeScript" value="true" />
+    </context>
+  </template>
+  <template name="jmstp" value="export const mapStateToProps = (state) =&gt; {&#10;  const $RESULT$ = $END$(state)&#10;&#10;  return {&#10;    $RESULT$,&#10;  }&#10;}" description="mapStateToProps boilerplate" toReformat="false" toShortenFQNames="true">
+    <variable name="RESULT" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="ECMAScript6" value="true" />
+    </context>
+  </template>
+  <template name="jreducer" value="// import {&#10;&#10;// } from '../actions'&#10;&#10;const initialState = {}&#10;&#10;const $REDUCER_NAME$ = (state = initialState, action) =&gt; {&#10;  const { type, data } = action&#10;  switch (type) {&#10;    default:&#10;      return state&#10;  }&#10;}&#10;&#10;export default $REDUCER_NAME$&#10;" description="redux reducer" toReformat="false" toShortenFQNames="true">
+    <variable name="REDUCER_NAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="ES6_STATEMENT" value="true" />
-      <option name="JS_STATEMENT" value="true" />
+    </context>
+  </template>
+  <template name="wrap" value="&lt;$ELEMENT$&gt;&#10;  $SELECTION$&#10;&lt;/$ELEMENT$&gt;" description="Wrap selected in element" toReformat="false" toShortenFQNames="true">
+    <variable name="ELEMENT" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="JSX_HTML" value="true" />
+    </context>
+  </template>
+  <template name="gapi" value="import { axios } from 'helpers'&#10;import { IGenericAxiosResponse } from 'interfaces'&#10;&#10;export enum $MODULE$ {&#10;  $ENDPOINT_NAME$ = '',&#10;}&#10;&#10;interface $REPONSE_INTERFACE$ {}&#10;&#10;/**&#10; * $NAME_DESC$ request&#10; */&#10;export const $NAME$Request = async (): IGenericAxiosResponse&lt;$REPONSE_INTERFACE$&gt; =&gt; {&#10;  return axios.get($MODULE$.$ENDPOINT$)&#10;}&#10;" description="API GET request boilerplate" toReformat="true" toShortenFQNames="true">
+    <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ENDPOINT_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ENDPOINT" expression="ENDPOINT_NAME" defaultValue="" alwaysStopAt="false" />
+    <variable name="NAME_DESC" expression="capitalize(underscoresToSpaces(snakeCase(NAME)))" defaultValue="" alwaysStopAt="false" />
+    <variable name="REPONSE_INTERFACE" expression="concat(concat(&quot;I&quot;, capitalize(NAME)), &quot;Response&quot;)" defaultValue="" alwaysStopAt="false" />
+    <variable name="MODULE" expression="capitalize(concat(regularExpression(fileRelativePath(), &quot;.*[/]([a-z]+?)(?=[/]api).*&quot;, &quot;$1&quot;), &quot;Api&quot;))" defaultValue="" alwaysStopAt="false" />
+    <context>
+      <option name="TS_STATEMENT" value="true" />
+    </context>
+  </template>
+  <template name="gsapi" value="interface $REPONSE_INTERFACE$ {}&#10;&#10;/**&#10; * $NAME_DESC$ request&#10; */&#10;export const $NAME$Request = async (): IGenericAxiosResponse&lt;$REPONSE_INTERFACE$&gt; =&gt; {&#10;  return axios.get($MODULE$.$ENDPOINT$)&#10;}&#10;" description="Single GET API request boilerplate" toReformat="true" toShortenFQNames="true">
+    <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ENDPOINT" expression="ENDPOINT_NAME" defaultValue="" alwaysStopAt="false" />
+    <variable name="NAME_DESC" expression="capitalize(underscoresToSpaces(snakeCase(NAME)))" defaultValue="" alwaysStopAt="false" />
+    <variable name="REPONSE_INTERFACE" expression="concat(concat(&quot;I&quot;, capitalize(NAME)), &quot;Response&quot;)" defaultValue="" alwaysStopAt="false" />
+    <variable name="MODULE" expression="concat(regularExpression(fileRelativePath(), &quot;.*[/]([a-z]+?)(?=[/]api).*&quot;, &quot;$1&quot;), &quot;Api&quot;)" defaultValue="" alwaysStopAt="false" />
+    <context>
       <option name="TS_STATEMENT" value="true" />
     </context>
   </template>
