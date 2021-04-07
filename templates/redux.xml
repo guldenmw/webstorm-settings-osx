@@ -37,12 +37,13 @@
       <option name="JS_TOP_LEVEL_STATEMENT" value="true" />
     </context>
   </template>
-  <template name="apiact" value="export const $ACTION$_START = '$PREFIX$/$ACTION$_START'&#10;export const $ACTION$_SUCCESS = '$PREFIX$/$ACTION$_SUCCESS'&#10;export const $ACTION$_ERROR = '$PREFIX$/$ACTION$_ERROR'&#10;&#10;&#10;/*&#10; * $NAME_DESC$ actions&#10; */&#10;export const $ACTION_CREATOR$Start = (data: I$ACTION_CREATOR_INTERFACE$Start) =&gt; ({&#10;  type: $ACTION$_START, data,&#10;})&#10;&#10;export const $ACTION_CREATOR$Success = (data: I$ACTION_CREATOR_INTERFACE$Success) =&gt; ({&#10;  type: $ACTION$_SUCCESS, data,&#10;})&#10;&#10;export const $ACTION_CREATOR$Error = (data: I$ACTION_CREATOR_INTERFACE$Error) =&gt; ({&#10;  type: $ACTION$_ERROR, data,&#10;})&#10;" description="Redux Start, Success, Error Actions" toReformat="false" toShortenFQNames="true">
+  <template name="apiact" value="export const $ACTION$_START = '$PREFIX$/$ACTION$_START'&#10;export const $ACTION$_SUCCESS = '$PREFIX$/$ACTION$_SUCCESS'&#10;export const $ACTION$_ERROR = '$PREFIX$/$ACTION$_ERROR'&#10;&#10;&#10;/*&#10; * $NAME_DESC$ actions&#10; */&#10;export const $ACTION_CREATOR$Start = (data: $ACTION_CREATOR_INTERFACE$Start): $MODULE_UNION$ =&gt; ({&#10;  type: $ACTION$_START, data,&#10;})&#10;&#10;export const $ACTION_CREATOR$Success = (data: $ACTION_CREATOR_INTERFACE$Success): $MODULE_UNION$ =&gt; ({&#10;  type: $ACTION$_SUCCESS, data,&#10;})&#10;&#10;export const $ACTION_CREATOR$Error = (error = 'Something went wrong'): $MODULE_UNION$ =&gt; ({&#10;  type: $ACTION$_ERROR, error,&#10;})&#10;" description="Redux Start, Success, Error Actions" toReformat="false" toShortenFQNames="true">
     <variable name="ACTION" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="PREFIX" expression="regularExpression(fileRelativePath(), &quot;.*[/]([a-z]+?)(?=[/]actions).*&quot;, &quot;$1&quot;)" defaultValue="" alwaysStopAt="false" />
     <variable name="NAME_DESC" expression="capitalize(underscoresToSpaces(snakeCase(ACTION_CREATOR)))" defaultValue="" alwaysStopAt="false" />
     <variable name="ACTION_CREATOR" expression="camelCase(ACTION)" defaultValue="" alwaysStopAt="false" />
     <variable name="ACTION_CREATOR_INTERFACE" expression="capitalize(ACTION_CREATOR" defaultValue="" alwaysStopAt="false" />
+    <variable name="MODULE_UNION" expression="concat(capitalize(PREFIX), &quot;Action&quot;)" defaultValue="" alwaysStopAt="false" />
     <context>
       <option name="JAVA_SCRIPT" value="true" />
     </context>
