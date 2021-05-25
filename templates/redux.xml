@@ -39,7 +39,7 @@
   </template>
   <template name="apiact" value="export const $ACTION$_START = '$PREFIX$/$ACTION$_START'&#10;export const $ACTION$_SUCCESS = '$PREFIX$/$ACTION$_SUCCESS'&#10;export const $ACTION$_ERROR = '$PREFIX$/$ACTION$_ERROR'&#10;&#10;&#10;/*&#10; * $NAME_DESC$ actions&#10; */&#10;export const $ACTION_CREATOR$Start = (data: $ACTION_CREATOR_INTERFACE$Start): $MODULE_UNION$ =&gt; ({&#10;  type: $ACTION$_START, data,&#10;})&#10;&#10;export const $ACTION_CREATOR$Success = (data: $ACTION_CREATOR_INTERFACE$Success): $MODULE_UNION$ =&gt; ({&#10;  type: $ACTION$_SUCCESS, data,&#10;})&#10;&#10;export const $ACTION_CREATOR$Error = (error = 'Something went wrong'): $MODULE_UNION$ =&gt; ({&#10;  type: $ACTION$_ERROR, error,&#10;})&#10;" description="Redux Start, Success, Error Actions" toReformat="false" toShortenFQNames="true">
     <variable name="ACTION" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="PREFIX" expression="regularExpression(fileRelativePath(), &quot;.*[/]([a-z]+?)(?=[/]actions).*&quot;, &quot;$1&quot;)" defaultValue="" alwaysStopAt="false" />
+    <variable name="PREFIX" expression="capitalize(camelCase(regularExpression(fileRelativePath(), &quot;.*[/]([a-z-]+?)(?=[/]actions).*&quot;, &quot;$1&quot;)))" defaultValue="" alwaysStopAt="false" />
     <variable name="NAME_DESC" expression="capitalize(underscoresToSpaces(snakeCase(ACTION_CREATOR)))" defaultValue="" alwaysStopAt="false" />
     <variable name="ACTION_CREATOR" expression="camelCase(ACTION)" defaultValue="" alwaysStopAt="false" />
     <variable name="ACTION_CREATOR_INTERFACE" expression="capitalize(ACTION_CREATOR" defaultValue="" alwaysStopAt="false" />
@@ -92,8 +92,8 @@
     </context>
   </template>
   <template name="reducer" value="// import {&#10;&#10;// } from '../actions'&#10;&#10;export interface $INTERFACE_NAME$ {&#10;  [x: string]: any;&#10;}&#10;&#10;const initialState: $INTERFACE_NAME$ = {}&#10;&#10;const $REDUCER_NAME$ = (state = initialState, action): $INTERFACE_NAME$ =&gt; {&#10;  const { type, data } = action&#10;  switch (type) {&#10;    default:&#10;      return state&#10;  }&#10;};&#10;&#10;export default $REDUCER_NAME$&#10;" description="redux reducer" toReformat="false" toShortenFQNames="true">
-    <variable name="REDUCER_NAME" expression="concat(regularExpression(fileRelativePath(), &quot;.*[/]([a-z]+?)(?=[/]reducer).*&quot;, &quot;$1&quot;), &quot;Reducer&quot;)" defaultValue="" alwaysStopAt="false" />
-    <variable name="INTERFACE_NAME" expression="concat(&quot;I&quot;, concat(capitalize(REDUCER_NAME), &quot;State&quot;))" defaultValue="" alwaysStopAt="false" />
+    <variable name="REDUCER_NAME" expression="concat(capitalize(camelCase(regularExpression(fileRelativePath(), &quot;.*[/]([a-z-]+?)(?=[/]reducer).*&quot;, &quot;$1&quot;))), &quot;Reducer&quot;)" defaultValue="" alwaysStopAt="false" />
+    <variable name="INTERFACE_NAME" expression="concat(capitalize(REDUCER_NAME), &quot;State&quot;)" defaultValue="" alwaysStopAt="false" />
     <context>
       <option name="TS_STATEMENT" value="true" />
     </context>
