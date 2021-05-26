@@ -172,4 +172,16 @@
       <option name="TS_STATEMENT" value="true" />
     </context>
   </template>
+  <template name="redts" value="// INTERFACES SECTION&#10;import { ActionObject, ActionPayload, ActionType } from 'interfaces/redux'&#10;&#10;export enum $ACTIONS_ENUM$ {&#10;  $ACTION_NAME$ = '$MODULE_NAME$/$ACTION_NAME$',&#10;}&#10;&#10;// Action map responsible for mapping action to payload&#10;export type ActionPayloadMap = {&#10;  [$ACTION$]: { data: any },&#10;}&#10;&#10;// Action types used in reducer&#10;export type $ACTION_TYPES$ = {&#10;  [Type in ActionType&lt;ActionPayloadMap&gt;]: ActionObject&lt;ActionPayloadMap, Type&gt;&#10;}[ActionType&lt;ActionPayloadMap&gt;]&#10;&#10;// Factory for creating action creators&#10;export const actionCreatorFactory = &lt;Type extends ActionType&lt;Map&gt;, Map = ActionPayloadMap&gt;(type: Type) =&gt; {&#10;  return (payload?: ActionPayload&lt;Map, Type&gt;): ActionObject&lt;Map, Type&gt; =&gt; ({ type, payload })&#10;}&#10;&#10;&#10;// ACTIONS SECTION&#10;import { actionCreatorFactory, $ACTIONS_ENUM$ } from './interfaces'&#10;&#10;export const getMarketChangesStart = actionCreatorFactory($ACTION$)&#10;&#10;&#10;// REDUCER SECTION&#10;import { Reducer } from 'redux'&#10;import { $ACTIONS_ENUM$, $ACTION_TYPES$ } from './interfaces'&#10;&#10;export interface $STATE_INTERFACE$ {&#10;  [x: string]: any;&#10;}&#10;&#10;const initialState: $STATE_INTERFACE$ = {}&#10;&#10;const $REDUCER_NAME$: Reducer&lt;$STATE_INTERFACE$, $ACTION_TYPES$&gt; = (&#10;  state = initialState,&#10;  action&#10;): $STATE_INTERFACE$ =&gt; {&#10;  switch (action.type) {&#10;    case $ACTION$: {&#10;      return state&#10;    }&#10;&#10;    default:&#10;      return state&#10;  }&#10;}&#10;&#10;export default $REDUCER_NAME$&#10;" description="Redux action types" toReformat="false" toShortenFQNames="true">
+    <variable name="MODULE_NAME" expression="camelCase(regularExpression(fileRelativePath(), &quot;.*[/]([a-z-]+?)(?=[/]interfaces).*&quot;, &quot;$1&quot;))" defaultValue="" alwaysStopAt="false" />
+    <variable name="ACTION_TYPES" expression="concat(capitalize(MODULE_NAME), &quot;ActionTypes&quot;)" defaultValue="" alwaysStopAt="false" />
+    <variable name="ACTIONS_ENUM" expression="concat(capitalize(MODULE_NAME), &quot;Actions&quot;)" defaultValue="" alwaysStopAt="false" />
+    <variable name="ACTION_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ACTION" expression="concat(ACTIONS_ENUM, &quot;.&quot;, ACTION_NAME)" defaultValue="" alwaysStopAt="false" />
+    <variable name="REDUCER_NAME" expression="concat(MODULE_NAME, &quot;Reducer&quot;)" defaultValue="" alwaysStopAt="false" />
+    <variable name="STATE_INTERFACE" expression="concat(capitalize(REDUCER_NAME), &quot;State&quot;)" defaultValue="" alwaysStopAt="false" />
+    <context>
+      <option name="JS_TOP_LEVEL_STATEMENT" value="true" />
+    </context>
+  </template>
 </templateSet>
