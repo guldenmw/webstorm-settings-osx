@@ -190,4 +190,11 @@
       <option name="TS_STATEMENT" value="true" />
     </context>
   </template>
+  <template name="snap" value="import snap from 'jest-auto-snapshots';&#10;import $COMP$ from './$COMP$';&#10;&#10;snap($COMP$, './$COMP$.jsx');&#10;" description="jest snapshot test" toReformat="false" toShortenFQNames="true">
+    <variable name="COMP" expression="regularExpression(fileName(), &quot;[.].+&quot;, &quot;&quot;)" defaultValue="" alwaysStopAt="false" />
+    <context>
+      <option name="ES6_TOP_LEVEL_STATEMENT" value="true" />
+      <option name="JS_TOP_LEVEL_STATEMENT" value="true" />
+    </context>
+  </template>
 </templateSet>

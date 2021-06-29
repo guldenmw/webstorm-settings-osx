@@ -24,6 +24,12 @@
   </action>
   <action id="Hg.Commit.And.Push.Executor" />
   <action id="QuickChangeScheme" />
+  <action id="ResizeToolWindowLeft">
+    <keyboard-shortcut first-keystroke="meta alt left" />
+  </action>
+  <action id="ResizeToolWindowRight">
+    <keyboard-shortcut first-keystroke="meta alt right" />
+  </action>
   <action id="Resume">
     <keyboard-shortcut first-keystroke="meta alt r" />
   </action>
