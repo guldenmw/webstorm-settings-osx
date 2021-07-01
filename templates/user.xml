@@ -147,6 +147,7 @@
     <variable name="COMPONENT_NAME" expression="" defaultValue="ComponentName" alwaysStopAt="true" />
     <context>
       <option name="ECMAScript6" value="true" />
+      <option name="JAVA_SCRIPT" value="true" />
       <option name="TypeScript" value="true" />
     </context>
   </template>
