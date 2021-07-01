@@ -1,7 +1,6 @@
 <application>
   <component name="FileTypeManager" version="18">
     <extensionMap>
-      <mapping pattern="Option.jsx" type="AUTO_DETECTED" />
       <mapping pattern="temp" type="PLAIN_TEXT" />
       <mapping pattern="mock-tags.ts" type="PLAIN_TEXT" />
       <mapping pattern="meeting" type="PLAIN_TEXT" />
@@ -22,6 +21,7 @@
       <removed_mapping ext="makefile" approved="true" type="textmate" />
       <removed_mapping ext="snakefile" approved="true" type="textmate" />
       <removed_mapping pattern=".env" approved="true" type="PLAIN_TEXT" />
+      <removed_mapping pattern="Option.jsx" approved="true" type="AUTO_DETECTED" />
     </extensionMap>
   </component>
 </application>
