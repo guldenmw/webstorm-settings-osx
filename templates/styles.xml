@@ -1,8 +1,16 @@
 <templateSet group="styles">
-  <template name="style" value="export const $NAME$ = styled.div`&#10;  $END$&#10;`" description="Create styled component export" toReformat="false" toShortenFQNames="true">
+  <template name="style" value="export const $NAME$ = styled.div`&#10;  $END$;&#10;`;" description="Create styled component export" toReformat="false" toShortenFQNames="true">
     <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="ES6_STATEMENT" value="true" />
+      <option name="TS_STATEMENT" value="true" />
+    </context>
+  </template>
+  <template name="styled" value="import styled from 'styled-components';&#10;&#10;export const $STYLEDVAR$ = styled.div`&#10;  $END$;&#10;`;&#10;" description="Typescript Styled Component Template" toReformat="false" toShortenFQNames="true">
+    <variable name="STYLEDVAR" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="ECMAScript6" value="true" />
+      <option name="JAVA_SCRIPT" value="true" />
       <option name="TS_STATEMENT" value="true" />
     </context>
   </template>
